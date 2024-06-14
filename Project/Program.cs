@@ -26,7 +26,7 @@
                 if(hostChoice=="1")
                 {
                   Console.WriteLine("So far, these are the results:");
-                  voteManager.CalcAndListPercentage();;
+                  //voteManager.CalcAndListPercentage();
                 }
                 else
                 {

@@ -3,30 +3,47 @@ namespace VotingSystem.Tests
     public class VoteManagerTests
     {
         private Election electionTest;
-            [Fact]
-        public void VoteForCandidate_NrVotesGetsIncrementedAfterVoting()
+        public VoteManagerTests()
         {
-            // Arrange
-            electionTest = new();
-            electionTest.candidates = [ 
-            new Candidate
+            electionTest.candidatesParties = [ 
+            new CandidateParty
             {
                 name = "Ryan Gasoline",
                 nrVotes = 3,
                 perVotes = 0,
             },
-            new Candidate
+            new CandidateParty
             {
-                name = "Adolf Stalin",
+                name = "Jack Black",
                 nrVotes = 6,
                 perVotes = 0,
             },
             ];
-            VoteManager voteManagertest = new();
+        }
+        readonly VoteManager voteManagertest = new();
+        [Fact]
+        public void VoteForCandidate_NrVotesGetsIncrementedAfterVoting()
+        {
+            // Arrange
+            electionTest = new();
             // Act
-            voteManagertest.VoteForCandidate(electionTest, electionTest.candidates[0]);
+            voteManagertest.VoteForCandidate(electionTest, electionTest.candidatesParties[0]);
             // Assert
-            Assert.Equal(4,electionTest.candidates[0].nrVotes);
+            Assert.Equal(4,electionTest.candidatesParties[0].nrVotes);
+        }
+        [Fact]
+        public void CalcAndListPercentage_ReturnCorrectPercentageOfVotes()
+        {
+            // Arrange
+            electionTest = new()
+            {
+                totatVotes = 9
+            };
+            // Act
+            voteManagertest.CalcAndListPercentage(electionTest);
+            // Assert
+            Assert.Equal(60,electionTest.candidatesParties[1].perVotes);
+
         }
     }
 }

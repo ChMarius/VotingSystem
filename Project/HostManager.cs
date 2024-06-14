@@ -1,4 +1,4 @@
-using System.Xml;
+using System.Security.Cryptography.X509Certificates;
 
 namespace VotingSystem
 {
@@ -6,11 +6,10 @@ namespace VotingSystem
     {
         public static List<Election> elections=new();
         public static string hostPassword="marius";        
-        public void MakeElection()
+        public void AssignElectionType(Election election, ElectionType electionType)
         {
            Console.Write("Choose a type of election you want to organise: 1 for Presidential, 2 for Parliamentary or 3 for Local\n> ");
            #pragma warning disable CS8602 // Dereference of a possibly null reference.
-           Election election=new();
            elections.Add(election);
            while(true)
            {
@@ -36,9 +35,8 @@ namespace VotingSystem
                }
                break;
             } 
-         } 
-
-        public void RegisterCandidatesParties()
+        } 
+        public void RegisterCandidates(Election election, List<CandidateParty> listCandidates)
         {
           Console.WriteLine("Register the candidates");
           int i=0;
@@ -54,14 +52,10 @@ namespace VotingSystem
             }
             i++;
           }
-
         }
-
-        public void LiveResults()
+        public void RegisterParty(Election election, List<CandidateParty> listParties)
         {
-          VoteManager results=new();
-          Console.WriteLine("So far, these are the results.");
-          results.CalcAndListPercentage();
+
         }
     }
 }

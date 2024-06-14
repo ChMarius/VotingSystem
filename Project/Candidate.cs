@@ -1,6 +1,6 @@
 namespace VotingSystem
 {
-    public struct Candidate
+    public struct CandidateParty
     {
         public string name;
         public int nrVotes;
