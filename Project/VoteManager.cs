@@ -14,8 +14,9 @@ namespace VotingSystem
         public void VoteForCandidate(Election election, CandidateParty votedCandidate)
         {
            Console.WriteLine("You can vote only for one candidate. Type the number next to the candidate you want to vote for."); 
-           for(int i=0;i<election.candidatesParties.Count;++i){
-               Console.WriteLine($"{i+1}. {election.candidatesParties[i].name}");
+           for(int i=0;i<election.candidatesParties.Count;++i)
+           {
+              Console.WriteLine($"{i+1}. {election.candidatesParties[i].name}");
            }
            Console.Write("> "); string? choice=Console.ReadLine();
            switch(choice)
