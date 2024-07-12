@@ -4,13 +4,12 @@ namespace VotingSystem
 {
     public class HostManager : IHostManager
     {
-        public static List<Election> elections=new();
+        public static Election currentElection;
         public static string hostPassword="marius";        
-        public void AssignElectionType(Election election, ElectionType electionType)
+        public void AssignElectionType(ElectionType electionType)
         {
            Console.Write("Choose a type of election you want to organise: 1 for Presidential, 2 for Parliamentary or 3 for Local\n> ");
            #pragma warning disable CS8602 // Dereference of a possibly null reference.
-           elections.Add(election);
            while(true)
            {
              string? choice=Console.ReadLine();
@@ -19,15 +18,15 @@ namespace VotingSystem
                  // Use a switch statement to choose between election types
                  case "1":
                    Console.WriteLine("You chose to host a presidential election");
-                   election.type=ElectionType.Presidential;
+                   currentElection.type=ElectionType.Presidential;
                    break;
                  case "2":
                    Console.WriteLine("You chose to host a parliamentary election");
-                   election.type=ElectionType.Parliamentary;
+                   currentElection.type=ElectionType.Parliamentary;
                    break;
                  case "3":
                    Console.WriteLine("You chose to host a local election");
-                   election.type=ElectionType.Local;
+                   currentElection.type=ElectionType.Local;
                    break;
                  default:
                    Console.Write("Invalid Input. Type 1 for Presidential, 2 for Parliamentary or 3 for Local\n");
@@ -36,7 +35,7 @@ namespace VotingSystem
                break;
             } 
         } 
-        public void RegisterCandidates(Election election, List<CandidateParty> listCandidates)
+        public void RegisterCandidates(List<CandidateParty> listCandidates)
         {
           Console.WriteLine("Register the candidates");
           int i=0;
@@ -53,7 +52,7 @@ namespace VotingSystem
             i++;
           }
         }
-        public void RegisterParty(Election election, List<CandidateParty> listParties)
+        public void RegisterParty(List<CandidateParty> listParties)
         {
 
         }

@@ -5,13 +5,13 @@ namespace VotingSystem
     {
         public void ListCandidates()
         {
-            Console.WriteLine($"Here are the candidates for the {HostManager.elections[0].type} election\n");
-            for(int i=0;i<HostManager.elections[0].candidatesParties.Count;++i)
+            Console.WriteLine($"Here are the candidates for the {HostManager.currentElection.type} election\n");
+            for(int i=0;i<HostManager.currentElection.candidatesParties.Count;++i)
             {
-              Console.WriteLine($"{i+1}. {HostManager.elections[0].candidatesParties[i].name}");
+              Console.WriteLine($"{i+1}. {HostManager.currentElection.candidatesParties[i].name}");
             }
         }
-        public void VoteForCandidate(Election election, CandidateParty votedCandidate)
+        public void VoteForCandidate(Election election, string candidateNr)
         {
            Console.WriteLine("You can vote only for one candidate. Type the number next to the candidate you want to vote for."); 
            for(int i=0;i<election.candidatesParties.Count;++i)
@@ -41,11 +41,11 @@ namespace VotingSystem
              */
            }
         }
-        public void CalcAndListPercentage(Election election)
+        public void CalcAndListPercentage()
         {
-            for(int i=0;i<election.candidatesParties.Count;++i){
+            for(int i=0;i<HostManager.currentElection.candidatesParties.Count;++i){
                 //HostManager.elections[0].candidates[i].perVotes=HostManager.elections[0].candidates[i].nrVotes/HostManager.elections[0].totatVotes*100;
-                Console.WriteLine($"{i+1}.{election.candidatesParties[i].name} - {election.candidatesParties[i].perVotes} %");
+                Console.WriteLine($"{i+1}.{HostManager.currentElection.candidatesParties[i].name} - {HostManager.currentElection.candidatesParties[i].perVotes} %");
             }
         }
     }

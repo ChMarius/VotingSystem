@@ -17,39 +17,81 @@
             if(personNr=="0")
             {
               Console.WriteLine("Password required to enter as a host");
-              while(true){
-              Console.Write("> "); string? passWord=Console.ReadLine();
-              if(passWord==HostManager.hostPassword)
+              while(true)
               {
-                Console.Write("Do you want to organise a new election or see the results of the current one?. Type 0 for new election and 1 for the results. \n>");
-                string? hostChoice=Console.ReadLine();
-                if(hostChoice=="1")
+                Console.Write("> ");
+                string? passWord=Console.ReadLine();
+                if(passWord==HostManager.hostPassword)
                 {
-                  Console.WriteLine("So far, these are the results:");
-                  //voteManager.CalcAndListPercentage();
-                }
-                else
-                {
-                  Election election = new();
-                  for(int i=0;i<=4;++i)
+                  Console.Write("Here are the action you can do.\n 1.Calculate the results of the current election \n 2. Organise an election \n Type x in order to exit the program\n >");
+                  string? hostChoice=Console.ReadLine();
+                  if(hostChoice=="1")
                   {
-                    Console.WriteLine($"{i+1}.{election.candidates[i].name}");
+                    Console.WriteLine("So far, these are the results:");
+                    voteManager.CalcAndListPercentage();
                   }
-                  break;
+                  else
+                  {
+                    Console.WriteLine("Choose an election type.\n1.Presidential\n2.Parliamentary\n3.Local\n> ");
+                    while(true)
+                    {
+                      ElectionType electionType;
+                      string? choice = Console.ReadLine();
+                      switch(choice)
+                      {
+                        // Use a switch statement to choose between election types
+                        case "1":
+                          Console.WriteLine("You chose to host a presidential election");
+                          electionType=ElectionType.Presidential;
+                          break;
+                        case "2":
+                          Console.WriteLine("You chose to host a parliamentary election");
+                          electionType=ElectionType.Parliamentary;
+                          break;
+                        case "3":
+                          Console.WriteLine("You chose to host a local election");
+                          electionType=ElectionType.Local;
+                          break;
+                        default:
+                          Console.Write("Invalid Input. Type 1 for Presidential, 2 for Parliamentary or 3 for Local\n");
+                          continue;
+                      }
+                      hostManager.AssignElectionType(electionType);
+                      Console.WriteLine("Input the name of the candidates in order to register them in the election or type x to end the candidate registration.");
+                      int i = 0;
+                      while(true)
+                      {
+                        string? nameCandidate = Console.ReadLine();
+                        HostManager.currentElection.candidatesParties[i] = (CandidateParty)nameCandidate;
+                        ++i;
+                        break;
+                      }
+                      break;
+                    }
+                  }
                 }
-              }
-              else if(passWord=="x") { programActive=false; break; }
-              else { Console.WriteLine("Invalid Password. Try Again!"); } 
+                else if(passWord=="x") 
+                { 
+                  programActive = false; 
+                  break; 
+                }
+                else 
+                { 
+                  Console.WriteLine("Invalid Password. Try Again!"); 
+                } 
               }
             }
 
            else if(personNr=="1")
            {
             // Ability for the user to vote down below needs refactoring
-            if(HostManager.elections.Count!=0 && HostManager.elections[0].candidates.Count>=2)
+            if(HostManager.currentElection.candidatesParties.Count!=0 && HostManager.currentElection.candidatesParties.Count>=2)
             {
+              Console.WriteLine("Type the number next to the candidate you wish to vote for this election\n >");
+              string candidateNr = Console.ReadLine();
+              voteManager.VoteForCandidate(HostManager.currentElection, candidateNr);
             }
-            else {Console.WriteLine("There is no election held.");}
+            else Console.WriteLine("There is no election held.");
            }
            else if(personNr=="x") { programActive=false; } 
          }

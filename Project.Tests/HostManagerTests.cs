@@ -44,7 +44,7 @@ namespace VotingSystem.Tests
             // Arrange
             ElectionType typeTest = ElectionType.Presidential;
             // Act
-            hostManagerTest.AssignElectionType(predictedElectionCandidateTest, typeTest);
+            hostManagerTest.AssignElectionType(typeTest);
             // Assert
             Assert.Equal(ElectionType.Presidential,predictedElectionCandidateTest.type);
         }
@@ -64,7 +64,7 @@ namespace VotingSystem.Tests
                 },
             ];
             // Act
-            hostManagerTest.RegisterCandidates(electionTest, listCandidatesTest);
+            hostManagerTest.RegisterCandidates(listCandidatesTest);
             // Assert
             Assert.Equal(predictedElectionCandidateTest.candidatesParties, electionTest.candidatesParties);
         }
@@ -84,7 +84,7 @@ namespace VotingSystem.Tests
                 },
             ];
             // Act
-            hostManagerTest.RegisterCandidates(electionTest, listPartiesTest);
+            hostManagerTest.RegisterCandidates(listPartiesTest);
             // Assert
             Assert.Equal(predictedElectionPartyTest.candidatesParties, electionTest.candidatesParties);
         }
