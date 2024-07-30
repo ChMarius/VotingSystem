@@ -1,22 +1,22 @@
 namespace VotingSystem
 {
-    // IDEA : Pass the the election number as a parameter into methods
+    // IDEA : Pass the the HostManager.currentElection number as a parameter into methods
     public class VoteManager : IVoteManager
     {
         public void ListCandidates()
         {
-            Console.WriteLine($"Here are the candidates for the {HostManager.currentElection.type} election\n");
+            Console.WriteLine($"Here are the candidates for the {HostManager.currentElection.type} HostManager.currentElection\n");
             for(int i=0;i<HostManager.currentElection.candidatesParties.Count;++i)
             {
               Console.WriteLine($"{i+1}. {HostManager.currentElection.candidatesParties[i].name}");
             }
         }
-        public void VoteForCandidate(Election election, string candidateNr)
+        public void VoteForCandidate(CandidateParty candidateNr)
         {
            Console.WriteLine("You can vote only for one candidate. Type the number next to the candidate you want to vote for."); 
-           for(int i=0;i<election.candidatesParties.Count;++i)
+           for(int i=0;i<HostManager.currentElection.candidatesParties.Count;++i)
            {
-              Console.WriteLine($"{i+1}. {election.candidatesParties[i].name}");
+              Console.WriteLine($"{i+1}. {HostManager.currentElection.candidatesParties[i].name}");
            }
            Console.Write("> "); string? choice=Console.ReadLine();
            switch(choice)

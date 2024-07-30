@@ -32,16 +32,16 @@ namespace VotingSystem.Tests
         public void OrganizeElectionAndVoteCandidate_ExpectedVotes()
         {
             // Organizing the election
-            hostManagerTest.AssignElectionType(election, electionType);
-            hostManagerTest.RegisterCandidates(election, candidatesPartiesTest);
+            hostManagerTest.AssignElectionType(electionType);
+            hostManagerTest.RegisterCandidates(candidatesPartiesTest);
             // Voting for candidates
-            voteManagerTest.VoteForCandidate(election, candidatesPartiesTest[0]);
-            voteManagerTest.VoteForCandidate(election, candidatesPartiesTest[1]);
-            voteManagerTest.VoteForCandidate(election, candidatesPartiesTest[0]);
-            voteManagerTest.VoteForCandidate(election, candidatesPartiesTest[1]);
-            voteManagerTest.VoteForCandidate(election, candidatesPartiesTest[1]);
+            voteManagerTest.VoteForCandidate(candidatesPartiesTest[0]);
+            voteManagerTest.VoteForCandidate(candidatesPartiesTest[1]);
+            voteManagerTest.VoteForCandidate(candidatesPartiesTest[0]);
+            voteManagerTest.VoteForCandidate(candidatesPartiesTest[1]);
+            voteManagerTest.VoteForCandidate(candidatesPartiesTest[1]);
             // Calculating results
-            voteManagerTest.CalcAndListPercentage(election);
+            voteManagerTest.CalcAndListPercentage();
 
             // Assert
             Assert.Equal(expectedElection,election);

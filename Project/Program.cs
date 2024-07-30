@@ -84,14 +84,17 @@
 
            else if(personNr=="1")
            {
-            // Ability for the user to vote down below needs refactoring
-            if(HostManager.currentElection.candidatesParties.Count!=0 && HostManager.currentElection.candidatesParties.Count>=2)
+            if(HostManager.currentElection.candidatesParties.Count==0)
             {
-              Console.WriteLine("Type the number next to the candidate you wish to vote for this election\n >");
-              string candidateNr = Console.ReadLine();
-              voteManager.VoteForCandidate(HostManager.currentElection, candidateNr);
+              Console.WriteLine("There is no election held at the moment!");
             }
-            else Console.WriteLine("There is no election held.");
+            else
+            {
+            // Ability for the user to vote down below needs refactoring
+             Console.WriteLine("Type the number next to the candidate you wish to vote for this election\n >");
+             string? candidateNr = Console.ReadLine();
+             voteManager.VoteForCandidate((CandidateParty)candidateNr);
+            }
            }
            else if(personNr=="x") { programActive=false; } 
          }
