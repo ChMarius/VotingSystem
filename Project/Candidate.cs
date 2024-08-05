@@ -11,5 +11,10 @@ namespace VotingSystem
         {
             throw new NotImplementedException();
         }
+
+        public static implicit operator string(CandidateParty v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
