@@ -4,7 +4,7 @@ namespace VotingSystem.Tests
     {
         HostManager hostManagerTest = new();
         VoteManager voteManagerTest = new();
-        Election election = new();
+        Election electionTest = new();
         ElectionType electionType = ElectionType.Presidential;
         private static List<CandidateParty> candidatesPartiesTest = [
 
@@ -22,7 +22,7 @@ namespace VotingSystem.Tests
             }
         ];
 
-        Election expectedElection = 
+        Election expectedElectionTest = 
             new Election
             {
                 totatVotes = 5,
@@ -35,16 +35,21 @@ namespace VotingSystem.Tests
             hostManagerTest.AssignElectionType(electionType);
             hostManagerTest.RegisterCandidates(candidatesPartiesTest);
             // Voting for candidates
-            voteManagerTest.VoteForCandidate(candidatesPartiesTest[0]);
-            voteManagerTest.VoteForCandidate(candidatesPartiesTest[1]);
-            voteManagerTest.VoteForCandidate(candidatesPartiesTest[0]);
-            voteManagerTest.VoteForCandidate(candidatesPartiesTest[1]);
-            voteManagerTest.VoteForCandidate(candidatesPartiesTest[1]);
+            string choice = "1";
+            voteManagerTest.VoteForCandidate(choice, electionTest);
+            choice = "2";
+            voteManagerTest.VoteForCandidate(choice, electionTest);
+            choice ="1";
+            voteManagerTest.VoteForCandidate(choice, electionTest);
+            choice = "2";
+            voteManagerTest.VoteForCandidate(choice, electionTest);
+            choice ="2";
+            voteManagerTest.VoteForCandidate(choice, electionTest);
             // Calculating results
-            voteManagerTest.CalcAndListPercentage();
+            voteManagerTest.CalcAndListPercentage(electionTest);
 
             // Assert
-            Assert.Equal(expectedElection,election);
+            Assert.Equal(expectedElectionTest,electionTest);
             Assert.Equal(2, candidatesPartiesTest[0].nrVotes);
             Assert.Equal(3, candidatesPartiesTest[1].nrVotes);
             Assert.Equal(40, candidatesPartiesTest[0].perVotes);
