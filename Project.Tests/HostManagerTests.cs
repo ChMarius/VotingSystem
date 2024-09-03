@@ -5,7 +5,7 @@ namespace VotingSystem.Tests
         private Election predictedElectionCandidateTest;
         private Election predictedElectionPartyTest;
         private Election electionTest;
-        private HostManagerTests()
+        public HostManagerTests()
         {
             predictedElectionCandidateTest.type = ElectionType.Presidential;
             predictedElectionCandidateTest = new()
@@ -39,7 +39,7 @@ namespace VotingSystem.Tests
         }
         readonly HostManager hostManagerTest = new();
         [Fact]
-        private void AssignElectionType_CorrectElectionTypePresidential()
+        public void AssignElectionType_CorrectElectionTypePresidential()
         {
             // Arrange
             ElectionType typeTest = ElectionType.Presidential;
@@ -49,7 +49,7 @@ namespace VotingSystem.Tests
             Assert.Equal(ElectionType.Presidential,predictedElectionCandidateTest.type);
         }
         [Fact]
-        private void RegisterCandidate_CorrectCandidateRegistration()
+        public void RegisterCandidate_CorrectCandidateRegistration()
         {
             // Arrange
             electionTest = new();
@@ -69,7 +69,7 @@ namespace VotingSystem.Tests
             Assert.Equal(predictedElectionCandidateTest.candidatesParties, electionTest.candidatesParties);
         }
         [Fact]
-        private void RegisterParty_CorrectPartyRegistration()
+        public void RegisterParty_CorrectPartyRegistration()
         {
             // Arrange
             electionTest = new();

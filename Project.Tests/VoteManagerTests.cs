@@ -2,10 +2,10 @@ namespace VotingSystem.Tests
 {
     public class VoteManagerTests
     {
-        private Election electionTest;
+        Election currentElectionTest;
         public VoteManagerTests()
         {
-            electionTest.candidatesParties = [ 
+            currentElectionTest.candidatesParties = [ 
             new CandidateParty
             {
                 name = "Ryan Gasoline",
@@ -25,24 +25,22 @@ namespace VotingSystem.Tests
         public void VoteForCandidate_NrVotesGetsIncrementedAfterVoting()
         {
             // Arrange
-            electionTest = new();
-            // Act
-            voteManagertest.VoteForCandidate(electionTest, electionTest.candidatesParties[0]);
+            string choice = "1";
+            // Arrange & Act
+            voteManagertest.VoteForCandidate(choice, currentElectionTest);
             // Assert
-            Assert.Equal(4,electionTest.candidatesParties[0].nrVotes);
+            Assert.Equal(4,currentElectionTest.candidatesParties[0].nrVotes);
         }
         [Fact]
         public void CalcAndListPercentage_ReturnCorrectPercentageOfVotes()
         {
             // Arrange
-            electionTest = new()
-            {
-                totatVotes = 9
-            };
+            currentElectionTest.totatVotes = 9;
             // Act
-            voteManagertest.CalcAndListPercentage(electionTest);
+            voteManagertest.CalcAndListPercentage(currentElectionTest);
             // Assert
-            Assert.Equal(60,electionTest.candidatesParties[1].perVotes);
+            Assert.Equal(66,(int)currentElectionTest.candidatesParties[1].perVotes);
+            Assert.Equal(33,(int)currentElectionTest.candidatesParties[0].perVotes);
 
         }
     }

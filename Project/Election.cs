@@ -4,7 +4,7 @@ namespace VotingSystem
     public struct Election
     {
         public int totatVotes;
-        public List<CandidateParty> candidatesParties =  new();
+        public List<CandidateParty> candidatesParties = new();
         public ElectionType type;
         public Election(){}
     }

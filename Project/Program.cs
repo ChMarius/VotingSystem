@@ -28,7 +28,7 @@
                   if(hostChoice=="1")
                   {
                     Console.WriteLine("So far, these are the results:");
-                    voteManager.CalcAndListPercentage();
+                    voteManager.CalcAndListPercentage(HostManager.currentElection);
                   }
                   else
                   {
@@ -93,7 +93,7 @@
             // Ability for the user to vote down below needs refactoring
              Console.WriteLine("Type the number next to the candidate you wish to vote for this election\n >");
              string? candidateNr = Console.ReadLine();
-             voteManager.VoteForCandidate((CandidateParty)candidateNr);
+             voteManager.VoteForCandidate(candidateNr, HostManager.currentElection);
             }
            }
            else if(personNr=="x") { programActive=false; } 
