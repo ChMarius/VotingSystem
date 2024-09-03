@@ -56,13 +56,14 @@
                           Console.Write("Invalid Input. Type 1 for Presidential, 2 for Parliamentary or 3 for Local\n");
                           continue;
                       }
-                      hostManager.AssignElectionType(electionType);
+                      hostManager.AssignElectionType(electionType, HostManager.currentElection);
                       Console.WriteLine("Input the name of the candidates in order to register them in the election or type x to end the candidate registration.");
                       int i = 0;
                       while(true)
                       {
-                        string? nameCandidate = Console.ReadLine();
-                        HostManager.currentElection.candidatesParties[i] = (CandidateParty)nameCandidate;
+                        CandidateParty nameCandidate = new();
+                        nameCandidate.name = Console.ReadLine();
+                        HostManager.currentElection.candidatesParties[i] = nameCandidate;
                         ++i;
                         break;
                       }

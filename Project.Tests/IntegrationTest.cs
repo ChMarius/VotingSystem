@@ -32,8 +32,8 @@ namespace VotingSystem.Tests
         public void OrganizeElectionAndVoteCandidate_ExpectedVotes()
         {
             // Organizing the election
-            hostManagerTest.AssignElectionType(electionType);
-            hostManagerTest.RegisterCandidates(candidatesPartiesTest);
+            hostManagerTest.AssignElectionType(electionType, electionTest);
+            hostManagerTest.RegisterCandidates(candidatesPartiesTest, electionTest);
             // Voting for candidates
             string choice = "1";
             voteManagerTest.VoteForCandidate(choice, electionTest);
