@@ -7,7 +7,6 @@ namespace VotingSystem.Tests
         private Election electionTest;
         public HostManagerTests()
         {
-            predictedElectionCandidateTest.type = ElectionType.Presidential;
             predictedElectionCandidateTest = new()
             {
                 candidatesParties =
@@ -18,7 +17,7 @@ namespace VotingSystem.Tests
                     },
                     new CandidateParty
                     {
-                        name = "Zeus Christ"
+                        name = "Arnold Green"
                     },
                 ]
             };
@@ -44,7 +43,7 @@ namespace VotingSystem.Tests
             // Arrange
             ElectionType typeTest = ElectionType.Presidential;
             // Act
-            hostManagerTest.AssignElectionType(typeTest);
+            hostManagerTest.AssignElectionType(typeTest, predictedElectionCandidateTest);
             // Assert
             Assert.Equal(ElectionType.Presidential,predictedElectionCandidateTest.type);
         }
@@ -64,7 +63,7 @@ namespace VotingSystem.Tests
                 },
             ];
             // Act
-            hostManagerTest.RegisterCandidates(listCandidatesTest);
+            hostManagerTest.RegisterCandidates(listCandidatesTest, electionTest);
             // Assert
             Assert.Equal(predictedElectionCandidateTest.candidatesParties, electionTest.candidatesParties);
         }
@@ -84,7 +83,7 @@ namespace VotingSystem.Tests
                 },
             ];
             // Act
-            hostManagerTest.RegisterCandidates(listPartiesTest);
+            hostManagerTest.RegisterCandidates(listPartiesTest, electionTest);
             // Assert
             Assert.Equal(predictedElectionPartyTest.candidatesParties, electionTest.candidatesParties);
         }

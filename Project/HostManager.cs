@@ -1,13 +1,10 @@
-using System.Reflection.Metadata;
-using System.Security.Cryptography.X509Certificates;
-
 namespace VotingSystem
 {
     public class HostManager : IHostManager
     {
       public static Election currentElection = new();
       public static string hostPassword="marius";        
-      public void AssignElectionType(ElectionType electionType)
+      public void AssignElectionType(ElectionType electionType, Election election)
       {
           while(true)
           {
@@ -16,27 +13,26 @@ namespace VotingSystem
               // Use a switch statement to choose between election types
               case ElectionType.Presidential:
                 Console.WriteLine("You chose to host a presidential election");
-                currentElection.type=ElectionType.Presidential;
+                election.type=ElectionType.Presidential;
                 break;
               case ElectionType.Parliamentary:
                 Console.WriteLine("You chose to host a parliamentary election");
-                currentElection.type=ElectionType.Parliamentary;
+                election.type=ElectionType.Parliamentary;
                 break;
               case ElectionType.Local:
                 Console.WriteLine("You chose to host a local election");
-                currentElection.type=ElectionType.Local;
+                election.type=ElectionType.Local;
                 break;
               }
               break;
           } 
       } 
-      public void RegisterCandidates(List<CandidateParty> listCandidates)
+      public void RegisterCandidates(List<CandidateParty> listCandidates, Election election)
       {
-        /*for(int i=0;i<=listCandidates.Count;++i)
+        for(int i=0;i<listCandidates.Count;++i)
         {
-          CandidateParty candidate=currentElection.candidatesParties[i];
-          currentElection.candidatesParties[i]=(CandidateParty)candidate.name;
-        }*/
+          election.candidatesParties.Add(listCandidates[i]);
+        }
       }
     }
 }
