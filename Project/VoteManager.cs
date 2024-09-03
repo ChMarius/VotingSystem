@@ -10,6 +10,7 @@ namespace VotingSystem
           Console.WriteLine($"{i+1}. {election.candidatesParties[i].name}");
         }
       }
+
       public void VoteForCandidate(string candidateNr, Election election)
       {
         int i;
@@ -28,13 +29,14 @@ namespace VotingSystem
           }
         }
       }
+
       public void CalcAndListPercentage(Election election)
       {
         for(int i=0;i<election.candidatesParties.Count;++i)
         {
-          var percentage =  election.candidatesParties[i];
-          percentage.perVotes = (election.candidatesParties[i].nrVotes/election.totatVotes)*100;
-          election.candidatesParties[i] = percentage;
+          var candidate =  election.candidatesParties[i];
+          candidate.perVotes = (election.candidatesParties[i].nrVotes*100)/election.totatVotes;
+          election.candidatesParties[i] = candidate;
           Console.WriteLine($"{i+1}.{election.candidatesParties[i].name} - {election.candidatesParties[i].perVotes} %");
         }
       }

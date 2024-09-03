@@ -35,11 +35,12 @@ namespace VotingSystem.Tests
         public void CalcAndListPercentage_ReturnCorrectPercentageOfVotes()
         {
             // Arrange
-            HostManager.currentElection.totatVotes = 9;
+            currentElectionTest.totatVotes = 9;
             // Act
             voteManagertest.CalcAndListPercentage(currentElectionTest);
             // Assert
-            Assert.Equal(60,HostManager.currentElection.candidatesParties[1].perVotes);
+            Assert.Equal(66,(int)currentElectionTest.candidatesParties[1].perVotes);
+            Assert.Equal(33,(int)currentElectionTest.candidatesParties[0].perVotes);
 
         }
     }
