@@ -11,17 +11,12 @@ namespace VotingSystem.Tests
             new CandidateParty
             {
                 name = "Arda Calhanoglu",
-                nrVotes = 0,
-                perVotes = 0
             },
             new CandidateParty
             {
                 name = "Franz Beckenbauer",
-                nrVotes = 0,
-                perVotes = 0
             }
         ];
-
         Election expectedElectionTest = 
             new Election
             {
@@ -29,31 +24,32 @@ namespace VotingSystem.Tests
                 candidatesParties = candidatesPartiesTest,
                 type = ElectionType.Presidential,
             };
+        [Fact]
         public void OrganizeElectionAndVoteCandidate_ExpectedVotes()
         {
             // Organizing the election
-            hostManagerTest.AssignElectionType(electionType, electionTest);
-            hostManagerTest.RegisterCandidates(candidatesPartiesTest, electionTest);
+            hostManagerTest.AssignElectionType(electionType, ref electionTest);
+            hostManagerTest.RegisterCandidates(candidatesPartiesTest, ref electionTest);
             // Voting for candidates
             string choice = "1";
-            voteManagerTest.VoteForCandidate(choice, electionTest);
+            voteManagerTest.VoteForCandidate(choice, ref electionTest);
             choice = "2";
-            voteManagerTest.VoteForCandidate(choice, electionTest);
+            voteManagerTest.VoteForCandidate(choice, ref electionTest);
             choice ="1";
-            voteManagerTest.VoteForCandidate(choice, electionTest);
+            voteManagerTest.VoteForCandidate(choice, ref electionTest);
             choice = "2";
-            voteManagerTest.VoteForCandidate(choice, electionTest);
+            voteManagerTest.VoteForCandidate(choice, ref electionTest);
             choice ="2";
-            voteManagerTest.VoteForCandidate(choice, electionTest);
+            voteManagerTest.VoteForCandidate(choice, ref electionTest);
             // Calculating results
-            voteManagerTest.CalcAndListPercentage(electionTest);
+            voteManagerTest.CalcAndListPercentage(ref electionTest);
 
             // Assert
-            Assert.Equal(expectedElectionTest,electionTest);
-            Assert.Equal(2, candidatesPartiesTest[0].nrVotes);
-            Assert.Equal(3, candidatesPartiesTest[1].nrVotes);
-            Assert.Equal(40, candidatesPartiesTest[0].perVotes);
-            Assert.Equal(60, candidatesPartiesTest[1].perVotes);
+            Assert.Equal(expectedElectionTest.totatVotes,electionTest.totatVotes);
+            Assert.Equal(2, electionTest.candidatesParties[0].nrVotes);
+            Assert.Equal(3, electionTest.candidatesParties[1].nrVotes);
+            Assert.Equal(40, electionTest.candidatesParties[0].perVotes);
+            Assert.Equal(60, electionTest.candidatesParties[1].perVotes);
         }
 
     }

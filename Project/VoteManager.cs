@@ -11,15 +11,15 @@ namespace VotingSystem
         }
       }
 
-      public void VoteForCandidate(string candidateNr, Election election)
+      public void VoteForCandidate(string candidateNr, ref Election election)
       {
-        int i;
         while(true)
         {
-          if (int.TryParse(candidateNr, out i) && i>=1 && i<=election.candidatesParties.Count)
+          if (int.TryParse(candidateNr, out int i) && i>=1 && i<=election.candidatesParties.Count)
           {
             var party = election.candidatesParties[i-1];
             party.nrVotes++;
+            election.totatVotes++;
             election.candidatesParties[i-1] = party;
             break;
           }
@@ -30,7 +30,7 @@ namespace VotingSystem
         }
       }
 
-      public void CalcAndListPercentage(Election election)
+      public void CalcAndListPercentage(ref Election election)
       {
         for(int i=0;i<election.candidatesParties.Count;++i)
         {
