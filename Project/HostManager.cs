@@ -4,7 +4,7 @@ namespace VotingSystem
     {
       public static Election currentElection = new();
       public static string hostPassword="marius";        
-      public void AssignElectionType(ElectionType electionType, Election election)
+      public void AssignElectionType(ElectionType electionType, ref Election election)
       {
           while(true)
           {
@@ -27,7 +27,7 @@ namespace VotingSystem
               break;
           } 
       } 
-      public void RegisterCandidates(List<CandidateParty> listCandidates, Election election)
+      public void RegisterCandidates(List<CandidateParty> listCandidates, ref Election election)
       {
         for(int i=0;i<listCandidates.Count;++i)
         {

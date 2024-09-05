@@ -27,7 +27,7 @@ namespace VotingSystem.Tests
             // Arrange
             string choice = "1";
             // Arrange & Act
-            voteManagertest.VoteForCandidate(choice, currentElectionTest);
+            voteManagertest.VoteForCandidate(choice, ref currentElectionTest);
             // Assert
             Assert.Equal(4,currentElectionTest.candidatesParties[0].nrVotes);
         }
@@ -37,7 +37,7 @@ namespace VotingSystem.Tests
             // Arrange
             currentElectionTest.totatVotes = 9;
             // Act
-            voteManagertest.CalcAndListPercentage(currentElectionTest);
+            voteManagertest.CalcAndListPercentage(ref currentElectionTest);
             // Assert
             Assert.Equal(66,(int)currentElectionTest.candidatesParties[1].perVotes);
             Assert.Equal(33,(int)currentElectionTest.candidatesParties[0].perVotes);

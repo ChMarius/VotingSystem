@@ -28,7 +28,7 @@
                   if(hostChoice=="1")
                   {
                     Console.WriteLine("So far, these are the results:");
-                    voteManager.CalcAndListPercentage(HostManager.currentElection);
+                    voteManager.CalcAndListPercentage(ref HostManager.currentElection);
                   }
                   else
                   {
@@ -56,7 +56,7 @@
                           Console.Write("Invalid Input. Type 1 for Presidential, 2 for Parliamentary or 3 for Local\n");
                           continue;
                       }
-                      hostManager.AssignElectionType(electionType, HostManager.currentElection);
+                      hostManager.AssignElectionType(electionType, ref HostManager.currentElection);
                       Console.WriteLine("Input the name of the candidates in order to register them in the election or type x to end the candidate registration.");
                       int i = 0;
                       while(true)
@@ -94,7 +94,7 @@
             // Ability for the user to vote down below needs refactoring
              Console.WriteLine("Type the number next to the candidate you wish to vote for this election\n >");
              string? candidateNr = Console.ReadLine();
-             voteManager.VoteForCandidate(candidateNr, HostManager.currentElection);
+             voteManager.VoteForCandidate(candidateNr, ref HostManager.currentElection);
             }
            }
            else if(personNr=="x") { programActive=false; } 
